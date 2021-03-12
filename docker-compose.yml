@@ -2,6 +2,7 @@ version: '3'
 
 services:
   mongo-express:
+    container_name: mongo-express
     image: mongo-express
     ports:
       - 8081:8081
@@ -15,22 +16,22 @@ services:
       - mongo
     networks:
       - mongo-compose-network
-
   mongo:
+    container_name: mongo
     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin!
     ports:
       - "27017:27017"
-    volumes:
-      - ./Volumes/MongoDB:/data/db
+#    volumes:
+#      - ./Volumes/MongoDB:/data/db
     networks:
       - mongo-compose-network
 
 networks: 
     mongo-compose-network:
       driver: bridge
-volumes:
-  mongo-data:
-    driver: local
+#volumes:
+#  mongo-data:
+#    driver: bridge
